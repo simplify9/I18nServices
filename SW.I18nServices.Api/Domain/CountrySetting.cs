@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.PostCodes.Api.Domain
+namespace SW.I18nService.Api.Domain
 {
     class CountrySetting
     {

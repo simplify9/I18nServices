@@ -1,4 +1,4 @@
-﻿using SW.PostCodes.Model;
+﻿using SW.I18nService.Model;
 using SW.PrimitiveTypes;
 using System;
 using System.Collections.Generic;
