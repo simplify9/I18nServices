@@ -7,8 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
+using SW.CqApi;
 using SW.HttpExtensions;
+using SW.I18n;
 using SW.I18nServices.Api;
+using SW.I18nServices.Api.Resources.HealthCheck;
 using SW.Logger;
 using SW.PrimitiveTypes;
 
@@ -27,6 +30,7 @@ namespace SW.I18nServices.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCqApi(typeof(HealthCheck).Assembly);
 
             services.AddDbContext<I18nServicesDbContext>(c =>
             {
@@ -39,7 +43,20 @@ namespace SW.I18nServices.Web
                 });
             });
 
-            services.AddScoped<RequestContext>();  
+            services.AddScoped<RequestContext>();
+            services.AddScoped<RetrievalService>();
+            services.AddScoped<PlaceDb>();
+
+            var i18nOptions = new I18nOptions();
+            if (Configuration != null) Configuration.GetSection(I18nOptions.ConfigurationSection).Bind(i18nOptions);
+            services.AddSingleton(i18nOptions);
+            services.AddMemoryCache();
+            services.AddSingleton<I18nService>();
+            services.AddSingleton<CountriesService>();
+            services.AddSingleton<CurrenciesService>();
+            services.AddSingleton<PhoneNumberingPlansService>();
+            services.AddHttpClient<ExternalCurrencyRatesService>();
+
 
         }
 
