@@ -51,7 +51,6 @@ namespace SW.I18nServices.Web
             if (Configuration != null) Configuration.GetSection(I18nOptions.ConfigurationSection).Bind(i18nOptions);
             services.AddSingleton(i18nOptions);
             services.AddMemoryCache();
-            services.AddSingleton<I18nService>();
             services.AddSingleton<CountriesService>();
             services.AddSingleton<CurrenciesService>();
             services.AddSingleton<PhoneNumberingPlansService>();
