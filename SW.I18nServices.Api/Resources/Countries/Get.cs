@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n.Api.Resources.Countries
+namespace SW.I18nService.Api.Resources.Countries
 {
     class Get : IGetHandler<string>
     {
-        private readonly I18nService i18NService;
+        private readonly I18nServiceService i18NService;
 
-        public Get(I18nService i18NService)
+        public Get(I18nServiceService i18NService)
         {
             this.i18NService = i18NService;
         }

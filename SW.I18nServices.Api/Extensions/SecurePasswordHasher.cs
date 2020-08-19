@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     internal static class SecurePasswordHasher
     {

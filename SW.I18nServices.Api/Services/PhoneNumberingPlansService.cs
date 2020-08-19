@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public class PhoneNumberingPlansService
     {
@@ -14,7 +14,7 @@ namespace SW.I18n
 
         public PhoneNumberingPlansService(CountriesService countriesService)
         {
-            var assembly = typeof(I18nService).Assembly;
+            var assembly = typeof(I18nServiceService).Assembly;
             var pnpds = assembly.GetManifestResourceStream("SW.I18n.Data.pnpd.bin");
             pnpd = pnpds.AsDictionary<PnpValue>();
             this.countriesService = countriesService;

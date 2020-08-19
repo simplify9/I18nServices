@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n.Resources.Localities
+namespace SW.I18nService.Resources.Localities
 {
     public class GetCountryLocalities : IQueryHandler<string, LocalityOptions>
     {

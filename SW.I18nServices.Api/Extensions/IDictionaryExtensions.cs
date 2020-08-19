@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public static class IDictionaryExtensions
     {

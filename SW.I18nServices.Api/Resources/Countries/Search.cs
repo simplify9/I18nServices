@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n.Api.Resources.Countries
+namespace SW.I18nService.Api.Resources.Countries
 {
     class Search : ISearchyHandler
     {
-        private readonly I18nService i18NService;
+        private readonly I18nServiceService i18NService;
 
-        public Search(I18nService i18NService)
+        public Search(I18nServiceService i18NService)
         {
             this.i18NService = i18NService;
         }

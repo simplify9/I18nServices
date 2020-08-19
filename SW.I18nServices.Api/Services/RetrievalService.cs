@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public class RetrievalService
     {

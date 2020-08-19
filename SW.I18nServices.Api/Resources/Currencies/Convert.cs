@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n.Resources.Currencies
+namespace SW.I18nService.Resources.Currencies
 {
     [HandlerName("convert")]
     class Convert : IQueryHandler<ConvertCurrency>

@@ -1,4 +1,4 @@
-﻿namespace SW.I18n
+﻿namespace SW.I18nService
 {
     public class PnpResult
     {

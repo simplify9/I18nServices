@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public class CurrenciesService
     {

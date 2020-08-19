@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public class CountriesService
     {
@@ -10,7 +10,7 @@ namespace SW.I18n
 
         public CountriesService()
         {
-            var assembly = typeof(I18nService).Assembly;
+            var assembly = typeof(I18nServiceService).Assembly;
             var cntryds = assembly.GetManifestResourceStream("SW.I18n.Data.cntryd.bin");
             
             cntryd = new Dictionary<string, Country>(cntryds.AsDictionary<Country>(), StringComparer.OrdinalIgnoreCase);

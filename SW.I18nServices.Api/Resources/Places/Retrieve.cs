@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n.Resources.Places
+namespace SW.I18nService.Resources.Places
 {
     public class Retrieve : IQueryHandler<string,RetrieveOptions>
     {

@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public class ExternalCurrencyRatesService
     {

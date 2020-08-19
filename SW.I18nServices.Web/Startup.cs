@@ -9,9 +9,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Pomelo.EntityFrameworkCore.MySql.Storage;
 using SW.CqApi;
 using SW.HttpExtensions;
-using SW.I18n;
+using SW.I18nService;
 using SW.I18nServices.Api;
-using SW.I18nServices.Api.Resources.HealthCheck;
 using SW.Logger;
 using SW.PrimitiveTypes;
 
@@ -30,7 +29,7 @@ namespace SW.I18nServices.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCqApi(typeof(HealthCheck).Assembly);
+            services.AddCqApi(typeof().Assembly);
 
             services.AddDbContext<I18nServicesDbContext>(c =>
             {
@@ -51,6 +50,7 @@ namespace SW.I18nServices.Web
             if (Configuration != null) Configuration.GetSection(I18nOptions.ConfigurationSection).Bind(i18nOptions);
             services.AddSingleton(i18nOptions);
             services.AddMemoryCache();
+            servi
             services.AddSingleton<CountriesService>();
             services.AddSingleton<CurrenciesService>();
             services.AddSingleton<PhoneNumberingPlansService>();

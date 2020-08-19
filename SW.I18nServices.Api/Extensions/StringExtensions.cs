@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     public static class StringExtensions
     {

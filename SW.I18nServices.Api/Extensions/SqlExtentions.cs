@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SW.I18n
+namespace SW.I18nService
 {
     static class SqlExtentions
     {
