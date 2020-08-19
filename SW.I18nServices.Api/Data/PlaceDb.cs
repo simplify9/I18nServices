@@ -21,18 +21,20 @@ namespace SW.I18nService
 
         private string SqlStatementGen(string countryCode, string field, string filter, bool distinct = false)
         {
-            return SqlStatementGen(countryCode, 
-                distinct,
-                new List<string> { field }, 
-                new Dictionary<string, string> {
-                [field] = filter
-                }
-            );
+            if(field != null && filter != null)
+                return SqlStatementGen(countryCode, 
+                    distinct,
+                    new List<string> { field }, 
+                    new Dictionary<string, string> {
+                    [field] = filter
+                    }
+                );
+            return SqlStatementGen(countryCode, distinct);
         }
         private string SqlStatementGen(string countryCode, bool distinct = false, IList<string> fields = null, IDictionary<string, string> filters = null)
         {
             string tableName = $"Places_{countryCode}";
-            string sqlStatement = "SELECT " + (distinct? "DISTINCT " : "") + "TOP(1500) ";
+            string sqlStatement = "SELECT " + (distinct? "DISTINCT " : "");
             if (fields != null && fields.Count > 0) foreach (string field in fields) sqlStatement += $"[{field.RemoveSpecialCharacters()}],";
             else sqlStatement += "* ";
 
@@ -55,7 +57,7 @@ namespace SW.I18nService
                 }
             }
 
-            sqlStatement += ';';
+            sqlStatement += " LIMIT 500;";
 
             return sqlStatement;
         }
