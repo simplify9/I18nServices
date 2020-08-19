@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using SW.I18nServices.Api;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -63,7 +63,7 @@ namespace SW.I18nService
 
         public async Task<IEnumerable<IDictionary<string, string>>> RetrievePlaces(string countryCode, IList<string> fields, IDictionary<string, string> filters)
         {
-            using (SqlConnection conn = new SqlConnection { ConnectionString = connectionString })
+            using (MySqlConnection conn = new MySqlConnection { ConnectionString = connectionString })
             {
                 conn.Open();
                 var rs = await conn.QueryFields(SqlStatementGen(countryCode, false, fields, filters), fields);
@@ -75,7 +75,7 @@ namespace SW.I18nService
 
         public async Task<HashSet<string>> RetrieveLocalities(string countryCode, string query)
         {
-            using (SqlConnection conn = new SqlConnection { ConnectionString = connectionString })
+            using (MySqlConnection conn = new MySqlConnection { ConnectionString = connectionString })
             {
                 conn.Open();
                 var rs = await conn.QueryField(SqlStatementGen(countryCode, "Locality", query, true), "Locality");
