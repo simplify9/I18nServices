@@ -57,7 +57,7 @@ namespace SW.I18nService
                 }
             }
 
-            sqlStatement += " LIMIT 500;";
+            sqlStatement += " LIMIT 1500;";
 
             return sqlStatement;
         }
