@@ -1,16 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SimplyWorks.EfCoreExtensions" Version="2.0.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="SimplyWorks.EfCoreExtensions" Version="2.0.6" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SW.I18nServices.Sdk\SW.I18nServices.Sdk.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Data\cntryd.bin" />
+		<None Remove="Data\pnpd.bin" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Data\cntryd.bin" />
+		<EmbeddedResource Include="Data\pnpd.bin" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\SW.I18nServices.Sdk\SW.I18nServices.Sdk.csproj" />
+	</ItemGroup>
 
 </Project>

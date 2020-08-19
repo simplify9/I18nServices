@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Pomelo.EntityFrameworkCore.MySql.Storage;
 using SW.CqApi;
 using SW.HttpExtensions;
 using SW.I18nService;
+using SW.I18nService.Resources.Localities;
 using SW.I18nServices.Api;
 using SW.Logger;
 using SW.PrimitiveTypes;
@@ -29,7 +31,14 @@ namespace SW.I18nServices.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCqApi(typeof().Assembly);
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+            AddCookie(configureOptions =>
+            {
+                configureOptions.LoginPath = "/login";
+            }).
+            AddJwtBearer();
+
+            services.AddCqApi(typeof(GetCountryLocalities).Assembly);
 
             services.AddDbContext<I18nServicesDbContext>(c =>
             {
@@ -50,7 +59,7 @@ namespace SW.I18nServices.Web
             if (Configuration != null) Configuration.GetSection(I18nOptions.ConfigurationSection).Bind(i18nOptions);
             services.AddSingleton(i18nOptions);
             services.AddMemoryCache();
-            servi
+            services.AddTransient<I18nServiceService>();
             services.AddSingleton<CountriesService>();
             services.AddSingleton<CurrenciesService>();
             services.AddSingleton<PhoneNumberingPlansService>();
@@ -68,6 +77,7 @@ namespace SW.I18nServices.Web
             }
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseHttpUserRequestContext();
             app.UseRequestContextLogEnricher();
