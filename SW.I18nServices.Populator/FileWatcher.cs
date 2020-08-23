@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using SW.I18nServices.Api.Domain;
+using SW.PrimitiveTypes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,11 +22,13 @@ namespace SW.I18nServices.Populator
     {
         private Timer timer;
         private IConfiguration configuration;
+        private ICloudFilesService cloudFiles;
         private readonly ILogger logger;
-        public FileWatcher(ILogger<FileWatcher> logger, IConfiguration configuration)
+        public FileWatcher(ILogger<FileWatcher> logger, IConfiguration configuration, ICloudFilesService cloudFiles)
         {
             this.logger = logger;
             this.configuration = configuration;
+            this.cloudFiles = cloudFiles;
         }
         public void Dispose()
         {
@@ -40,34 +43,41 @@ namespace SW.I18nServices.Populator
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Gets the filestreams of any new files on the the cloud,
+        /// Retrieves their streams and populates tables.
+        /// </summary>
+        /// <param name="state"></param>
         public async void SyncFiles(object state)
         {
             var filePaths = await GetNewFiles();
 
-            if (filePaths.Count == 0) return;
+            if (filePaths.Count() == 0) return;
 
             var files = await DownloadFiles(filePaths);
             
-
+            foreach(var file in files)
+            {
+                await PopulateTable(file);
+                //delete file
+            }
         }
 
-        public async Task<List<string>> GetNewFiles()
+        public async Task<IEnumerable<CloudFileInfo>> GetNewFiles()
         {
-            List<string> newFiles = new List<string>();
-            // Get files from DO
-            // Skip 1 to avoid space base url
-            // return list
-            return await Task.FromResult(newFiles);
+            var files = await cloudFiles.ListAsync("");
+            return files;
         }
 
-        public async Task<List<Stream>> DownloadFiles(List<string> filePaths)
+        public async Task<List<Stream>> DownloadFiles(IEnumerable<CloudFileInfo> filePaths)
         {
             List<Stream> files = new List<Stream>();
-            foreach(var _ in filePaths)
+            foreach(var filePath in filePaths)
             {
-                //Download files, add them to files array
+                Stream fileStream = await cloudFiles.OpenReadAsync(filePath.Key);
+                files.Add(fileStream);
             }
-            return await Task.FromResult(files);
+            return files;
         }
 
         private async static Task ExecuteSql(DbConnection sqlConnection, string sql)

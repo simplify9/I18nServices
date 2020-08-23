@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SW.I18nServices.Api.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
