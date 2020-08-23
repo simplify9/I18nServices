@@ -16,8 +16,8 @@ namespace SW.I18nServices.Api.Domain
 		public string Locality { get; set; }
 		public string Postcode { get; set; }
 		public string Suburb { get; set; }
-		public decimal Longitude { get; set; }
-		public decimal Latitude { get; set; }
+		public decimal? Longitude { get; set; }
+		public decimal? Latitude { get; set; }
 
         public class Map : ClassMap<Place>
         {

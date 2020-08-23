@@ -58,7 +58,7 @@ namespace SW.I18nServices.Populator
             
             foreach(var file in files)
             {
-                await PopulateTable(file);
+                using (file) await PopulateTable(file);
                 //delete file
             }
         }
@@ -99,7 +99,7 @@ namespace SW.I18nServices.Populator
 
             using var connection = new MySqlConnection
             {
-                ConnectionString = configuration.GetConnectionString("")
+                ConnectionString = configuration.GetConnectionString("i18nservices-dev")
             };
 
             await connection.OpenAsync();
