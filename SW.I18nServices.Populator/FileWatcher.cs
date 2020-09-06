@@ -54,11 +54,10 @@ namespace SW.I18nServices.Populator
 
             if (filePaths.Count() == 0) return;
 
-            var files = await DownloadFiles(filePaths);
             
-            foreach(var file in files)
+            foreach(var file in filePaths)
             {
-                using (file) await PopulateTable(file);
+                await PopulateTable(file);
                 //delete file
             }
         }
@@ -88,8 +87,9 @@ namespace SW.I18nServices.Populator
         }
 
 
-        public async Task PopulateTable(Stream csvFile)
+        public async Task PopulateTable(CloudFileInfo csvFileInfo)
         {
+            using var csvFile = await cloudFiles.OpenReadAsync(csvFileInfo.Key);
             using StreamReader reader = new StreamReader(csvFile);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             csv.Configuration.Delimiter = ";";
@@ -122,8 +122,6 @@ namespace SW.I18nServices.Populator
 	                Longitude decimal(9, 6) NULL,
 	                Latitude decimal(9, 6) NULL
                 );");
-
-            //var lst = csv.GetRecords<Place>().ToList();
 
             StringBuilder insertStatementBuilder = null;
             var index = 0;
