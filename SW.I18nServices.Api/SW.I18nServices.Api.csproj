@@ -2,6 +2,15 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
+		<PackageId>SimplyWorks.I18n.Service</PackageId>
+		<Authors>Simplify9</Authors>
+		<Product>SimplyWorks.I18n</Product>
+		<PackageProjectUrl>https://github.com/simplify9/I18nServices</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/simplify9/I18nServices</RepositoryUrl>
+		<Copyright>Simplify9</Copyright>
+		<Company>Simplify9</Company>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,5 +32,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\SW.I18nServices.Sdk\SW.I18nServices.Sdk.csproj" />
 	</ItemGroup>
-
+	<ItemGroup>
+		<None Include="../icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
