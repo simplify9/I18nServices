@@ -36,10 +36,9 @@ steps:
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    packagesToPack: 'SW.I18nServices.Api/SW.I18nServices.Api.csproj;'
+    packagesToPack: 'SW.I18nServices.Api/SW.I18nServices.Api.csproj;SW.I18nServices.Sdk/SW.I18nServices.Sdk.csproj;'
     nobuild: true
     versioningScheme: 'byBuildNumber'
-    buildProperties: 'IncludeReferencedProjects=true'
 
 - task: NuGetCommand@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
