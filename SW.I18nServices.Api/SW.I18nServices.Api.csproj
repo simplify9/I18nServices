@@ -19,13 +19,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Data\cntryd.bin" />
 		<None Remove="Data\pnpd.bin" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="Data\cntryd.bin" />
 		<EmbeddedResource Include="Data\pnpd.bin" />
+		<None Remove="Data\country.bin" />
+		<EmbeddedResource Include="Data\country.bin" />
 	</ItemGroup>
 
 
