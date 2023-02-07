@@ -11,7 +11,7 @@ namespace SW.I18nService
         public CountriesService()
         {
             var assembly = typeof(I18nServiceService).Assembly;
-            var cntryds = assembly.GetManifestResourceStream("SW.I18nServices.Api.Data.cntryd.bin");
+            var cntryds = assembly.GetManifestResourceStream("SW.I18nServices.Api.Data.country.bin");
             var manifestress = assembly.GetManifestResourceNames();
             cntryd = new Dictionary<string, Country>(cntryds.AsDictionary<Country>(), StringComparer.OrdinalIgnoreCase);
             

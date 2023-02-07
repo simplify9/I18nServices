@@ -24,6 +24,7 @@ namespace SW.I18nService
             CurrencyCode = values[9];
             CurrencyName = values[10];
             Tld = values[11];
+            EconomicAlliance = values[12];
         }
 
         public string Tld { get; set; }
@@ -38,10 +39,11 @@ namespace SW.I18nService
         public string CurrencyCode { get; set; }
         public string CurrencyName { get; set; }
         public string Capital { get; set; }
+        public string EconomicAlliance { get; set; }
 
         public override string ToString()
         {
-            return $"{Code};{IsoCode};{IsoNumber};{Name};{Capital};{Languages};{PostCodeFormat};{PostCodeRegex};{Phone};{CurrencyCode};{CurrencyName};{Tld}";
+            return $"{Code};{IsoCode};{IsoNumber};{Name};{Capital};{Languages};{PostCodeFormat};{PostCodeRegex};{Phone};{CurrencyCode};{CurrencyName};{Tld};{EconomicAlliance}";
         }
     }
 }
