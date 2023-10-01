@@ -10,7 +10,7 @@ namespace SW.I18nService
 {
     public static class IDictionaryExtensions
     {
-        async public static Task ToStreamAsync<TVlaue>(this IDictionary<string, TVlaue> dictionary, Stream destinationStream)
+        public static async Task ToStreamAsync<TValue>(this IDictionary<string, TValue> dictionary, Stream destinationStream)
         {
             using (var memoryStream = new MemoryStream())
             using (var zips = new GZipStream(memoryStream, CompressionLevel.Optimal))
